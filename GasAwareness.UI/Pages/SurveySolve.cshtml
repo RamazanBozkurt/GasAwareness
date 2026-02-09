@@ -1,0 +1,117 @@
+@page "{id:guid}"
+@model GasAwareness.UI.Pages.SurveySolve
+@{
+    ViewData["Title"] = "SurveySolve";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3>@Model.Survey.Title</h3>
+                </div>
+                <div class="card-body p-5">
+                    <form method="post">
+                        <input type="hidden" id="surveyId" value="@Model.Survey.Id" />
+
+                        @for (int i = 0; i < Model.Survey.Questions.Count; i++)
+                        {
+                            var q = Model.Survey.Questions[i];
+                            <div class="question-block mb-5 p-3 rounded shadow-sm border">
+                                <h5 class="mb-3">@(i + 1). @q.QuestionText</h5>
+                                <hr />
+
+                                <input type="hidden" name="UserAnswers[@i].QuestionId" value="@q.Id" />
+
+                                @foreach (var opt in q.Options)
+                                {
+                                    <div class="form-check mb-2 custom-option">
+                                        <input class="form-check-input" type="radio" name="UserAnswers[@i].OptionId"
+                                               id="opt_@opt.Id" value="@opt.Id" required>
+                                        <label class="form-check-label ms-2" for="opt_@opt.Id">
+                                            @opt.OptionText
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Anketi Tamamla ve Gönder</button>
+                        </div>
+                    </form>
+
+                    @if (Model.Result != null)
+                    {
+                        <div class="modal fade show" id="resultModal" tabindex="-1"
+                             style="display: block; background: rgba(0,0,0,0.5);">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content border-0 shadow-lg">
+                                    <div class="modal-body text-center p-5">
+                                        <div class="mb-4">
+                                            @if (Model.Result.Score >= 70)
+                                            {
+                                                <i class="bi bi-patch-check-fill text-success" style="font-size: 5rem;"></i>
+                                                <h2 class="fw-bold text-success">Tebrikler!</h2>
+                                            }
+                                            else
+                                            {
+                                                <i class="bi bi-exclamation-circle-fill text-warning"
+                                                   style="font-size: 5rem;"></i>
+                                                <h2 class="fw-bold text-dark">Tamamlandı</h2>
+                                            }
+                                        </div>
+
+                                        <h4 class="mb-4">Anket Sonucunuz</h4>
+
+                                        <div class="row g-0 bg-light rounded-3 p-3 mb-4">
+                                            <div class="col-4 border-end">
+                                                <div class="h3 mb-0">@Model.Result.TotalQuestions</div>
+                                                <small class="text-muted">Soru</small>
+                                            </div>
+                                            <div class="col-4 border-end">
+                                                <div class="h3 mb-0 text-success">@Model.Result.CorrectAnswers</div>
+                                                <small class="text-muted">Doğru</small>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="h3 mb-0 text-danger">@Model.Result.WrongAnswers</div>
+                                                <small class="text-muted">Yanlış</small>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="alert @(Model.Result.Score >= 70 ? "alert-success" : "alert-secondary") mb-4">
+                                            <span class="h5">Başarı Puanı: %@Model.Result.Score.ToString("F0")</span>
+                                        </div>
+
+                                        <a href="/" class="btn btn-primary btn-lg w-100 shadow-sm">
+                                            Ana Sayfaya Dön
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-option {
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+        transition: 0.2s;
+    }
+
+    .custom-option:hover {
+        background-color: #f8f9fa;
+    }
+
+    .question-block {
+        background-color: #ffffff;
+    }
+</style>

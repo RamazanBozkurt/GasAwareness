@@ -1,0 +1,15 @@
+video[b-lh3b2wnxet] {
+    border-radius: 8px;
+}
+
+#video-detail[b-lh3b2wnxet] {
+    width: 250px;
+    text-decoration: none;
+    color: black;
+    height: 100px;
+    margin-bottom: 45px;
+}
+
+#video-detail-thumbnail[b-lh3b2wnxet] {
+    border-radius: 8px;
+}

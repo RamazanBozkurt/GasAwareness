@@ -1,0 +1,17 @@
+.video-card:hover .play-icon {
+    opacity: 1 !important;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.video-card img {
+    transition: filter 0.3s ease;
+}
+
+.video-card:hover img {
+    filter: brightness(0.7); 
+}
+
+#video-main-thumbnail {
+    text-decoration: none;
+}

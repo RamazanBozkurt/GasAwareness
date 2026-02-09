@@ -1,0 +1,6 @@
+@GasAwareness.API_HostAddress = http://localhost:5052
+
+GET {{GasAwareness.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

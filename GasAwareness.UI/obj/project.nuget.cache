@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "dgSpecHash": "yH1QPpABfl8=",
+  "success": true,
+  "projectFilePath": "/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/GasAwareness.UI.csproj",
+  "expectedPackageFiles": [
+    "/Users/ramazanbozkurt/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/mediatoolkit/1.1.0.1/mediatoolkit.1.1.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/10.0.0/microsoft.aspnetcore.authentication.jwtbearer.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/10.0.0/microsoft.aspnetcore.identity.entityframeworkcore.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.entityframeworkcore/10.0.0/microsoft.entityframeworkcore.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.0/microsoft.entityframeworkcore.abstractions.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.0/microsoft.entityframeworkcore.analyzers.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.0/microsoft.entityframeworkcore.relational.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.extensions.apidescription.server/10.0.0/microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.identitymodel.abstractions/8.0.1/microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.0.1/microsoft.identitymodel.jsonwebtokens.8.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.identitymodel.logging/8.0.1/microsoft.identitymodel.logging.8.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.identitymodel.protocols/8.0.1/microsoft.identitymodel.protocols.8.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.0.1/microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.identitymodel.tokens/8.0.1/microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/microsoft.openapi/2.4.1/microsoft.openapi.2.4.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/npgsql/10.0.0/npgsql.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/npgsql.entityframeworkcore.postgresql/10.0.0/npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/swashbuckle.aspnetcore/10.1.2/swashbuckle.aspnetcore.10.1.2.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/swashbuckle.aspnetcore.swagger/10.1.2/swashbuckle.aspnetcore.swagger.10.1.2.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/swashbuckle.aspnetcore.swaggergen/10.1.2/swashbuckle.aspnetcore.swaggergen.10.1.2.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/swashbuckle.aspnetcore.swaggerui/10.1.2/swashbuckle.aspnetcore.swaggerui.10.1.2.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'MediaToolkit 1.1.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/GasAwareness.UI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/GasAwareness.UI.csproj",
+      "libraryId": "MediaToolkit",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

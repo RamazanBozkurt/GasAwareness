@@ -1,0 +1,53 @@
+@page
+@model GasAwareness.UI.Pages.Management.CategoryManagement
+@{
+    Layout = "_ManagementLayout";
+    ViewData["Title"] = "CategoryManagement";
+}
+
+<div class="row mt-5">
+    <form method="post">
+        <div class="col-md-2">
+            <input asp-for="Request.Name" type="text" class="form-control" placeholder="Kategori Adı" aria-label="Name">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
+        </div>
+    </form>        
+</div>
+
+
+@if (@Model.Categories.Any()){
+<div class="row mt-5">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ad</th>
+                            <th scope="col">Eklenme Tarihi</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < @Model.Categories.Count; i++)
+                        {
+                            <tr>
+                                <th scope="row">@(i+1)</th>
+                                <td>@Model.Categories[i].Name</td>
+                                <td>@Model.Categories[i].CreatedAt.ToString("HH:mm - dd/MM/yyyy")</td>
+                                <td>
+                                    <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">
+                                        <input type="hidden" name="id" value="@Model.Categories[i].Id" />
+                                        <button type="submit" style="width: 120px;" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i> Sil
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+}

@@ -1,0 +1,22 @@
+[
+    {
+        "name": "İlköğretim",
+        "minAge": 7,
+        "maxAge": 12
+    },
+    {
+        "name": "Genç / Ergen",
+        "minAge": 13,
+        "maxAge": 18
+    },
+    {
+        "name": "Yetişkin",
+        "minAge": 19,
+        "maxAge": 64
+    },
+    {
+        "name": "Yaşlı / Emekli",
+        "minAge": 65,
+        "maxAge": 99
+    }
+]

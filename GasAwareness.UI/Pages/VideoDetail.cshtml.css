@@ -1,0 +1,15 @@
+video {
+    border-radius: 8px;
+}
+
+#video-detail {
+    width: 250px;
+    text-decoration: none;
+    color: black;
+    height: 100px;
+    margin-bottom: 45px;
+}
+
+#video-detail-thumbnail {
+    border-radius: 8px;
+}

@@ -1,0 +1,18 @@
+/* Hover Efekti (İsteğe bağlı: Üzerine gelince simge parlasın) */
+.video-card:hover .play-icon[b-i117ucy8t5] {
+    opacity: 1 !important;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.video-card img[b-i117ucy8t5] {
+    transition: filter 0.3s ease;
+}
+
+.video-card:hover img[b-i117ucy8t5] {
+    filter: brightness(0.7); /* Üzerine gelince resim hafif kararır, simge öne çıkar */
+}
+
+#video-main-thumbnail[b-i117ucy8t5] {
+    text-decoration: none;
+}

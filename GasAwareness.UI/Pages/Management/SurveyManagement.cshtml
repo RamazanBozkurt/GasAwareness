@@ -1,0 +1,176 @@
+@page
+@model GasAwareness.UI.Pages.Management.SurveyManagement
+@{
+    Layout = "_ManagementLayout";
+    ViewData["Title"] = "SurveyManagement";
+}
+
+<div class="container-fluid px-4 mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white py-3">
+            <h4 class="mb-0"><i class="bi bi-card-list"></i> Yeni Anket Taslağı</h4>
+        </div>
+        <div class="card-body p-4 bg-light">
+            <form method="post" id="surveyForm">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Anket Tanımı / Başlığı</label>
+                        <input asp-for="SurveyRequest.Title" class="form-control form-control-lg" placeholder="Örn: Genel Memnuniyet Anketi" required />
+                        <span class="text-muted small">Bu başlık daha sonra videolara bağlanırken kullanılacaktır.</span>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div id="questionsContainer">
+                    </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-outline-primary" onclick="addQuestion()">
+                        <i class="bi bi-plus-circle-fill"></i> Yeni Soru Ekle
+                    </button>
+                    
+                    <div class="action-group">
+                        <a href="/Admin/Surveys/Index" class="btn btn-outline-secondary me-2">İptal</a>
+                        <button type="submit" class="btn btn-success px-5">Taslağı Kaydet</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@if (@Model.Surveys.Any()){
+<div class="row mt-5">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Başlık</th>
+                            <th scope="col">Soru Sayısı</th>
+                            <th scope="col">Eklenme Tarihi</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < @Model.Surveys.Count; i++)
+                        {
+                            <tr>
+                                <th scope="row">@(i+1)</th>
+                                <td>@Model.Surveys[i].Title</td>
+                                <td>@Model.Surveys[i].QuestionCount</td>
+                                <td>@Model.Surveys[i].CreatedAt.ToString("HH:mm - dd/MM/yyyy")</td>
+                                <td>
+                                    <a asp-page="/Management/SurveyDetail" asp-route-id="@Model.Surveys[i].Id" style="width: 120px;" class="btn btn-primary btn-sm">
+                                        Detay
+                                    </a>
+                                </td>
+                                <td>
+                                    <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">
+                                        <input type="hidden" name="id" value="@Model.Surveys[i].Id" />
+                                        <button type="submit" style="width: 120px;" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i> Sil
+                                        </button>
+                                    </form>
+                                </td>   
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }
+
+@section Scripts {
+    <script>
+        let questionIndex = 0;
+
+        function addQuestion() {
+            const container = document.getElementById('questionsContainer');
+            const qIdx = questionIndex;
+            
+            const questionHtml = `
+                <div class="card border-0 shadow-sm mb-4 question-item animate__animated animate__fadeIn" data-index="${qIdx}">
+                    <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">SORU #${qIdx + 1}</span>
+                        <button type="button" class="btn btn-link text-white p-0" onclick="this.closest('.question-item').remove()">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </div>
+                    <div class="card-body bg-white">
+                        <input type="hidden" name="SurveyRequest.Questions[${qIdx}].Order" value="${qIdx}" />
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase">Soru Metni</label>
+                            <input type="text" name="SurveyRequest.Questions[${qIdx}].QuestionText" class="form-control" placeholder="Kullanıcıya sorulacak soru..." required />
+                        </div>
+
+                        <div class="options-wrapper ms-4 p-3 border-start border-4 border-info bg-light">
+                            <label class="form-label small fw-bold text-uppercase">Cevap Şıkları</label>
+                            <div class="options-list" id="optionsList_${qIdx}">
+                                </div>
+                            <button type="button" class="btn btn-sm btn-info text-white mt-2" onclick="addOption(${qIdx})">
+                                <i class="bi bi-plus"></i> Şık Ekle
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            
+            container.insertAdjacentHTML('beforeend', questionHtml);
+            questionIndex++;
+        }
+
+        @* function addOption(qIdx) {
+            const list = document.getElementById(`optionsList_${qIdx}`);
+            const oIdx = list.querySelectorAll('.option-item').length;
+
+            const optionHtml = `
+                <div class="input-group mb-2 option-item animate__animated animate__fadeIn">
+                    <span class="input-group-text bg-white border-end-0"><i class="bi bi-circle"></i></span>
+                    <input type="hidden" name="SurveyRequest.Questions[${qIdx}].Options[${oIdx}].Order" value="${oIdx}" />
+                    <input type="text" name="SurveyRequest.Questions[${qIdx}].Options[${oIdx}].OptionText" class="form-control border-start-0" placeholder="Seçenek yazın..." required />
+                    <button type="button" class="btn btn-outline-danger" onclick="this.parentElement.remove()">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>`;
+            
+            list.insertAdjacentHTML('beforeend', optionHtml);
+        } *@
+
+        function addOption(qIdx) {
+            const list = document.getElementById(`optionsList_${qIdx}`);
+            const oIdx = list.querySelectorAll('.option-item').length;
+
+            const optionHtml = `
+                <div class="input-group mb-2 option-item">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0 correct-radio" type="radio" 
+                            name="correct_radio_${qIdx}" 
+                            onchange="updateCorrectOption(${qIdx}, ${oIdx})">
+                        
+                        <input type="hidden" id="isCorrect_${qIdx}_${oIdx}" 
+                            name="SurveyRequest.Questions[${qIdx}].Options[${oIdx}].IsCorrect" value="false" />
+                    </div>
+                    
+                    <input type="hidden" name="SurveyRequest.Questions[${qIdx}].Options[${oIdx}].Order" value="${oIdx}" />
+                    <input type="text" name="SurveyRequest.Questions[${qIdx}].Options[${oIdx}].OptionText" class="form-control" placeholder="Şık metni..." required />
+                    <button type="button" class="btn btn-outline-danger" onclick="this.parentElement.remove()">x</button>
+                </div>`;
+            
+            list.insertAdjacentHTML('beforeend', optionHtml);
+        }
+
+        function updateCorrectOption(qIdx, oIdx) {
+            const allOptionsInQuestion = document.querySelectorAll(`[id^="isCorrect_${qIdx}_"]`);
+            allOptionsInQuestion.forEach(input => input.value = "false");
+
+            document.getElementById(`isCorrect_${qIdx}_${oIdx}`).value = "true";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            addQuestion();
+        });
+    </script>
+}

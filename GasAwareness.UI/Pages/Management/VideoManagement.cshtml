@@ -1,0 +1,162 @@
+@page
+@model GasAwareness.UI.Pages.Management.VideoManagement
+@{
+    Layout = "_ManagementLayout";
+    ViewData["Title"] = "VideoManagement";
+}
+
+<div class="mt-5">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="row">
+            <div class="col-md-4">
+                <input asp-for="RequestDto.Title" type="text" class="form-control" placeholder="Video Başlığı"
+                       aria-label="Title">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <input asp-for="VideoFile" id="video-upload-input" type="file" class="form-control" placeholder="Videoyu Seçiniz (mp4 formatında olmalı)"/> 
+                    <input asp-for="RequestDto.DurationSeconds" id="video-duration-in-seconds" hidden/>
+
+                    @* <input asp-for="VideoFile" type="file" class="d-none" id="videFileInput" accept=".mp4" />
+
+                    <button style="height:100%" type="button" class="btn btn-outline-primary btn-lg border-dashed"
+                            onclick="document.getElementById('videFileInput').click()">
+                        <i class="bi bi-cloud-arrow-up-fill me-2"></i>
+                        <span id="file-name-display">Videoyu Seçiniz (mp4 formatında olmalı)</span>
+                    </button> *@
+                </div>
+                @* <div class="col-md-2">
+                    <input asp-for="ImageFile" type="file" class="form-control" placeholder="Kapak Fotoğrafı Seçiniz (jpg, jpeg formatında olmalı)" />
+
+                    <input asp-for="ImageFile" type="file" class="d-none" id="imageFileInput" accept=".mp4" />
+
+                    <button style="height:100%" type="button" class="btn btn-outline-primary btn-lg border-dashed"
+                            onclick="document.getElementById('imageFileInput').click()">
+                        <i class="bi bi-cloud-arrow-up-fill me-2"></i>
+                        <span id="file-name-display">Kapak Fotoğrafı Seçiniz (jpg, jpeg formatında olmalı)</span>
+                    </button>
+                </div> *@
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <select asp-for="RequestDto.SurveyId" class="form-select" aria-label="Anketler">
+                        <option selected>Anket Seçin</option>
+                        @foreach (var survey in Model.Surveys)
+                        {
+                            <option value="@survey.Id">@survey.Title</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <select asp-for="RequestDto.CategoryId" class="form-select" aria-label="Kategoriler">
+                        <option selected>Kategori Seçin</option>
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <select asp-for="RequestDto.AgeGroupId" class="form-select" aria-label="Yaş Grupları">
+                        <option selected>Yaş Grubu Seçin</option>
+                        @foreach (var ageGroup in Model.AgeGroups)
+                        {
+                            <option value="@ageGroup.Id">@ageGroup.Name (@ageGroup.MinAge - @ageGroup.MaxAge)</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <select asp-for="RequestDto.SubscriptionTypeId" class="form-select" aria-label="Abonelik Tipleri">
+                        <option selected>Abonelik Tipi Seçin</option>
+                        @foreach (var subscriptionType in Model.SubscriptionTypes)
+                        {
+                            <option value="@subscriptionType.Id">@subscriptionType.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            @* <div class="mb-3">
+            <label class="form-label">Bir dosya seçin</label>
+            <input asp-for="RequestDto.VideoFile" type="file" class="form-control" />
+            <span asp-validation-for="Upload" class="text-danger"></span> 
+        </div> *@
+
+            <button type="submit" class="btn btn-primary mt-3">
+                <i class="bi bi-cloud-upload"></i> Yükle
+            </button>
+        </form>
+
+        @if (@Model.VideoModels.Any()){
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Başlık</th>
+                            <th scope="col">Süre</th>
+                            <th scope="col">Eklenme Tarihi</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < @Model.VideoModels.Count; i++)
+                        {
+                            <tr>
+                                <th scope="row">@(i+1)</th>
+                                <td>@Model.VideoModels[i].Title</td>
+                                <td>@Model.VideoModels[i].DurationSeconds</td>
+                                <td>@Model.VideoModels[i].CreatedAt.ToString("HH:mm - dd/MM/yyyy")</td>
+                                <td>
+                                    <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Bu videoyu silmek istediğinize emin misiniz?');">
+                                        <input type="hidden" name="id" value="@Model.VideoModels[i].Id" />
+                                        <button type="submit" style="width: 120px;" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i> Sil
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }
+    </div>
+
+    <script>
+    document.getElementById('video-upload-input').onchange = function(e) {
+        const file = this.files[0];
+        if (!file) return;
+
+        const videoUrl = URL.createObjectURL(file);
+        const videoElement = document.createElement('video');
+
+        videoElement.preload = 'metadata';
+        videoElement.src = videoUrl;
+
+        videoElement.onloadedmetadata = function() {
+            URL.revokeObjectURL(videoUrl);
+
+            const duration = Math.floor(videoElement.duration);
+            
+            const durationInput = document.getElementById('video-duration-in-seconds');
+            if (durationInput) {
+                durationInput.value = duration;
+            }
+        };
+
+        videoElement.onerror = function() {
+            URL.revokeObjectURL(videoUrl);
+        };
+    };
+</script>

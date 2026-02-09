@@ -1,0 +1,126 @@
+@page "{id:Guid}"
+@model GasAwareness.UI.Pages.VideoDetail
+@{
+    ViewData["Title"] = "VideoDetail";
+
+    // "/files/videos/c86990ec-8173-472b-9927-670dab2fa8b7/c86990ec-8173-472b-9927-670dab2fa8b7.mp4"
+}
+
+<div class="row mt-5">
+    <div class="col-md-8">
+        @* <video width="320" height="240" controls> *@
+        <video class="w-100" controls autoplay>
+            @* <source src="/files/videos/7e94f8b3-4c5c-410c-ad85-27695dce7c5f.mp4" type="video/mp4"> *@
+            <source src="@Model?.VideoDetailDto?.Path" type="video/mp4">
+        </video>
+
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <h4 class="mt-2"><strong>@Model?.VideoDetailDto?.Title</strong></h4>
+            </div>
+            <div class="col-md-6"></div>
+            <div class="col-md-2">
+                @Model?.VideoDetailDto?.CreatedAt.ToString("dd/MM/yyyy")
+            </div>
+        </div>
+
+
+        @if (Model?.VideoDetailDto != null)
+        {
+            <div class="row mt-2">
+                <form method="post">
+                    @foreach (var item in @Model?.VideoDetailDto?.Categories)
+                    {
+                        <button type="submit" asp-page-handler="RedirectWithSelectedCategory" asp-route-categoryId="@item.Id"
+                                id="category-buttons"
+                                style="background-color:#F2F2F2; border-radius:100px; border-color:black; margin:2%; padding:8px 16px; max-width:fit-content; display:inline-flex;">
+                            @item.Name
+                        </button>
+                    }
+
+                    @foreach (var item in @Model?.VideoDetailDto?.AgeGroups)
+                    {
+                        <button type="submit" asp-page-handler="RedirectWithSelectedAgeGroup" asp-route-ageGroupId="@item.Id"
+                                id="category-buttons"
+                                style="background-color:#F2F2F2; border-radius:100px; border-color:black; margin:2%; padding:8px 16px; max-width:fit-content; display:inline-flex;">
+                            @item.Name
+                        </button>
+                    }
+
+                    @foreach (var item in @Model?.VideoDetailDto?.SubscriptionTypes)
+                    {
+                        <button type="submit" asp-page-handler="RedirectWithSelectedSubscriptionType"
+                                asp-route-subscriptionTypeId="@item.Id" id="category-buttons"
+                                style="background-color:#F2F2F2; border-radius:100px; border-color:black; margin:2%; padding:8px 16px; max-width:fit-content; display:inline-flex;">
+                            @item.Name
+                        </button>
+                    }
+                </form>
+            </div>
+        }
+
+        <div class="row mt-2">
+            <form method="post" class="row g-2">
+                <div class="col-auto">
+                    @if (@Model.VideoDetailDto.IsWatched)
+                    {
+                        <button type="submit" asp-page-handler="SetVideoAsNotWatched"
+                                asp-route-videoId="@Model?.VideoDetailDto?.Id" class="btn btn-primary">
+                            <i class="bi bi-eye-slash-fill"></i> İzlenmedi olarak işaretle
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" asp-page-handler="SetVideoAsWatched"
+                                asp-route-videoId="@Model?.VideoDetailDto?.Id" class="btn btn-primary">
+                            <i class="bi bi-eye"></i> İzlendi olarak işaretle
+                        </button>
+                    }
+                </div>
+                @if (@Model.VideoDetailDto.SurveyId != null && !@Model.VideoDetailDto.IsSurveySolved)
+                {
+                    <div class="col-auto">
+                        <button type="submit" asp-page-handler="RedirectToSurvey"
+                                asp-route-surveyId="@Model?.VideoDetailDto?.SurveyId" class="btn btn-success">
+                            <i class="bi bi-clipboard-check"></i> Anketi Tamamla
+                        </button>
+                    </div>
+                }
+            </form>
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+
+            @foreach (var item in @Model.VideoModels)
+            {
+                <div class="col-md-12">
+                    <a id="video-detail" asp-page="/VideoDetail" asp-route-id="@item.Id">
+                        <img id="video-detail-thumbnail" src="/files/DefaultThumbnail.png" alt="Video Başlığı" width="250px" height="100px">
+                        <p>@item.Title</p>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+video {
+    border-radius: 8px;
+}
+
+#video-detail {
+    width: 250px;
+    text-decoration: none;
+    color: black;
+    height: 100px;
+    margin-bottom: 45px;
+}
+
+#video-detail-thumbnail {
+    border-radius: 8px;
+}
+</style>

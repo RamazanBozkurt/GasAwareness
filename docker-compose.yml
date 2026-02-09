@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres
+    container_name: pg_gasAwareness
+    restart: always
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: Password1!
+      POSTGRES_DB: gasAwareness
+    ports:
+      - "5432:5432"

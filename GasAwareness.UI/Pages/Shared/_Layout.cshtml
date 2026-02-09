@@ -1,0 +1,89 @@
+﻿@using GasAwareness.API.Enums
+@using GasAwareness.API.Helpers
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Doğalgaz Farkındalık</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GasAwareness.UI.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <script src="https://kit.fontawesome.com/fc255f49da.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+            <div class="container-fluid px-5">
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                    <img src="/files/GasAwarenessLogo.png" alt="Logo" width="50" height="50"
+                         class="d-inline-block align-text-top me-2">
+                    @* <span class="fw-bold fs-4 text-primary">SmartFlow</span> *@
+                </a>
+
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav me-4 flex-row gap-4">
+
+
+                        @if (User.IsInRole(RoleGroup.AdminAndEditor))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold text-dark" href="/Management/Management">Yönetim</a>
+                            </li>
+                        }
+
+
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold text-dark" href="/Videos">Videolar</a>
+                        </li>
+                        @* <li class="nav-item">
+                            <a class="nav-link fw-semibold text-dark" href="/Quizzes">Anketler</a>
+                        </li> *@
+                    </ul>
+
+
+                    @* <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Hesabım
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item">Email :</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li> *@
+
+                    <a href="/Logout" class="btn btn-outline-danger px-4 rounded-pill fw-bold">
+                        Çıkış Yap
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - Doğalgaz Farkındalık - <a asp-area="" asp-page="/Privacy">Gizlilik</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

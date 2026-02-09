@@ -1,0 +1,79 @@
+@page "{id:guid}"
+@model GasAwareness.UI.Pages.Management.SurveyDetail
+@{
+    Layout = "_ManagementLayout";
+    ViewData["Title"] = "SurveyDetail";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="card shadow border-0">
+                <div class="card-header bg-dark text-white py-4 d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">@Model.Survey.Title - Anket Detayı</h3>
+                    @* <span class="badge bg-info text-dark">Salt Okunur Mod</span> *@
+                </div>
+                
+                <div class="card-body p-4 p-md-5">
+                    @for (int i = 0; i < Model.Survey.Questions.Count; i++)
+                    {
+                        var q = Model.Survey.Questions[i];
+                        <div class="question-item mb-5 p-4 rounded-3 border bg-light">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="fw-bold text-primary">@(i + 1). @q.QuestionText</h5>
+                            </div>
+                            <hr />
+
+                            <div class="options-list mt-3">
+                                @foreach (var opt in q.Options)
+                                {
+                                    var correctClass = opt.IsCorrect ? "correct-answer border-success shadow-sm" : "";
+                                    
+                                    <div class="form-check custom-option-view p-3 mb-2 rounded border @correctClass">
+                                        <input class="form-check-input ms-1" type="radio" 
+                                               name="q_@q.Id" 
+                                               @(opt.IsCorrect ? "checked" : "") 
+                                               disabled>
+                                        
+                                        <label class="form-check-label ms-3 fw-medium @(opt.IsCorrect ? "text-success fw-bold" : "text-muted")">
+                                            @opt.OptionText
+                                            @if (opt.IsCorrect)
+                                            {
+                                                <span class="badge bg-success ms-2"><i class="bi bi-check-lg"></i> Doğru Cevap</span>
+                                            }
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="text-center mt-4">
+                        <button onclick="history.back()" class="btn btn-secondary px-5">Geri Dön</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-option-view {
+        background-color: #fff;
+        transition: 0.3s;
+    }
+
+    .correct-answer {
+        background-color: #d1e7dd !important; 
+        border-left: 5px solid #198754 !important;
+    }
+
+    .form-check-input:disabled {
+        opacity: 0.8;
+        cursor: default;
+    }
+
+    .form-check-label {
+        cursor: default;
+    }
+</style>
