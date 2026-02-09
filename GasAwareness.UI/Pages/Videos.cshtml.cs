@@ -26,6 +26,8 @@ namespace GasAwareness.UI.Pages
         public List<SubscriptionTypeResponseDto> SubscriptionTypes { get; set; } = new();
         public List<VideoResponseDto> VideoModels { get; set; } = new();
 
+        public List<VideoResponseDto> WatchedVideos { get; set; } = new();
+
         private readonly IConfiguration _configuration;
         private HttpClient _client => CreateClient();
 
@@ -40,6 +42,7 @@ namespace GasAwareness.UI.Pages
             AgeGroups = await GetAgeGroupsAsync();
             SubscriptionTypes = await GetSubscriptionTypesAsync();
             VideoModels = await GetVideosAsync(RequestDto);
+            WatchedVideos = await GetWatchedVideosAsync(RequestDto);
 
             return Page();
         }
@@ -47,6 +50,28 @@ namespace GasAwareness.UI.Pages
         private async Task<List<VideoResponseDto>> GetVideosAsync(GetVideoRequestDto request)
         {
             var url = $"{_configuration["APIBaseUrl"]}videos?categoryId={request.CategoryId}&ageGroupId={request.AgeGroupId}&subscriptionTypeId={request.AgeGroupId}";
+            var response = await _client.GetAsync(url);
+
+            CheckResponse(response);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                return JsonSerializer.Deserialize<List<VideoResponseDto>>(jsonString, options) ?? new List<VideoResponseDto>();
+            }
+
+            return new List<VideoResponseDto>();
+        }
+
+        private async Task<List<VideoResponseDto>> GetWatchedVideosAsync(GetVideoRequestDto request)
+        {
+            var url = $"{_configuration["APIBaseUrl"]}videos/watched";
             var response = await _client.GetAsync(url);
 
             CheckResponse(response);

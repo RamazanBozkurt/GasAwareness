@@ -19,6 +19,9 @@ namespace GasAwareness.API.Controllers
             _categoryService = categoryService;
         }
 
+        /// <summary>
+        /// Get all categories
+        /// </summary>
         [HttpGet]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> GetCategoriesAsync()
@@ -26,6 +29,9 @@ namespace GasAwareness.API.Controllers
             return Ok(await _categoryService.GetCategoriesAsync());
         }
 
+        /// <summary>
+        /// Create a new category
+        /// </summary>
         [HttpPost]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> CreateCategoryAsync(CreateCategoryRequestDto request)
@@ -37,6 +43,10 @@ namespace GasAwareness.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete category by id
+        /// </summary>
+        /// <param name="id">Category Id</param>
         [HttpDelete]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> DeleteCategoryAsync([FromQuery] Guid id)

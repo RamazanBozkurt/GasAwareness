@@ -80,7 +80,7 @@ namespace GasAwareness.UI.Pages.Management
 
         private async Task<List<SurveyMainResponseDto>> GetSurveysAsync()
         {
-            var url = _configuration["APIBaseUrl"] + "surveys/main";
+            var url = _configuration["APIBaseUrl"] + "surveys/main/all";
             var response = await _client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)

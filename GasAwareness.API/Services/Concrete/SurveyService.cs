@@ -196,5 +196,14 @@ namespace GasAwareness.API.Services.Concrete
                 Answers = answers
             };
         }
+
+        public async Task<List<SurveyMainResponseDto>> GetAllSurveysMainListAsync()
+        {
+            var surveys = await _repository.GetEntityListAsync(new string[] { "Questions" }, x => !x.IsDeleted);
+
+            if (!surveys.Any()) return new List<SurveyMainResponseDto>();
+
+            return _mapper.Map<List<SurveyMainResponseDto>>(surveys);
+        }
     }
 }

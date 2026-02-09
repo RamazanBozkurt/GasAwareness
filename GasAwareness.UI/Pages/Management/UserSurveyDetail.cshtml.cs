@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using GasAwareness.API.Models.Survey.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 namespace GasAwareness.UI.Pages.Management
 {
+    [Authorize(Policy = "RequireAdmin")]
     public class UserSurveyDetail : BasePageModel
     {
         public UserSurveyDetailDto? Detail { get; set; }

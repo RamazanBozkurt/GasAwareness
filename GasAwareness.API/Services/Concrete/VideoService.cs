@@ -83,6 +83,15 @@ namespace GasAwareness.API.Services.Video.Concrete
             return _mapper.Map<List<VideoResponseDto>>(videos);
         }
 
+        public async Task<List<VideoResponseDto>> GetWatchedVideosAsync(string userId)
+        {
+            var videos = (await _repository.GetEntityListAsync(null, x => x.UserVideos.Any(y => y.UserId == userId && y.IsWatched) && !x.IsDeleted)).OrderByDescending(x => x.CreatedAt);
+
+            if (!videos.Any()) return new List<VideoResponseDto>();
+
+            return _mapper.Map<List<VideoResponseDto>>(videos);
+        }
+
         public async Task<bool> SetVideoWatchedStatusAsync(string userId, Guid id, bool isWatched)
         {
             var userVideo = await _repository.GetUserVideoAsync(userId, id);

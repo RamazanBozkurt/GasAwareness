@@ -4,23 +4,19 @@
     ViewData["Title"] = "Videos";
 }
 
-<div class="row mt-5">
 
 
-    @* VIDEOS - START *@
-    <div class="col-md-8">
-        <div class="row">
 
-            @if (!Model.VideoModels.Any())
-            {
-                <h5>Video bulunamadı</h5>
-            }
-
-            @foreach (var video in @Model.VideoModels)
+@* WATCHED VIDEOS - START *@
+@if (Model.WatchedVideos.Any())
+{
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <h4>İzlediğim Videolar</h4>
+            @foreach (var video in @Model.WatchedVideos)
             {
                 <div class="col-md-4 mt-3">
-                    <a id="video-main-thumbnail" class="card h-100 border-0 shadow-sm video-card"
-                           href="/VideoDetail/@video.Id">
+                    <a id="video-main-thumbnail" class="card h-100 border-0 shadow-sm video-card" href="/VideoDetail/@video.Id">
                         <div class="position-relative overflow-hidden rounded-3">
                             @* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV9wCx1jZUFmx7ROUvlzmb5nw34HElAqOClg&s" *@
                             <img src="/files/DefaultThumbnail.png" class="card-img-top" alt=@video.Title>
@@ -46,72 +42,116 @@
                 </div>
             }
         </div>
+        @* FILTERS - START *@
+        <div class="col-md-4 ml-5">
+
+
+            <form method="GET">
+
+
+                @* Categories - START *@
+                <div class="row">
+                    <div class="col-md-6">
+                        <select asp-for="RequestDto.CategoryId" class="form-select" aria-label="Kategoriler">
+                            <option selected>Kategori Seçin</option>
+                            @foreach (var category in Model.Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                @* Categories - END *@
+
+
+                @* AgeGroups - START *@
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <select asp-for="RequestDto.AgeGroupId" class="form-select" aria-label="Yaş Grupları">
+                            <option selected>Yaş Grubu Seçin</option>
+                            @foreach (var ageGroup in Model.AgeGroups)
+                            {
+                                <option value="@ageGroup.Id">@ageGroup.Name (@ageGroup.MinAge - @ageGroup.MaxAge)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                @* AgeGroups - END *@
+
+
+                @* SubscriptionTypes - START *@
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <select asp-for="RequestDto.SubscriptionTypeId" class="form-select" aria-label="Abonelik Tipleri">
+                            <option selected>Abonelik Tipi Seçin</option>
+                            @foreach (var subscriptionType in Model.SubscriptionTypes)
+                            {
+                                <option value="@subscriptionType.Id">@subscriptionType.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                @* SubscriptionTypes - END *@
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary w-100">Filtrele</button>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-page="/Videos" class="btn btn-outline-secondary w-100">Temizle</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        @* FILTERS - END *@
     </div>
-    @* VIDEOS - END *@
+
+}
+
+@* WATCHED VIDEOS - END *@
 
 
-    @* FILTERS - START *@
-    <div class="col-md-4 ml-5 mt-3">
+@* VIDEOS - START *@
+<div class="row mt-5">
+    <div class="col-md-8">
+        <h4>Tüm Videolar</h4>
+        @if (!Model.VideoModels.Any())
+        {
+            <h5>Video bulunamadı</h5>
+        }
 
+        @foreach (var video in @Model.VideoModels)
+        {
+            <div class="col-md-4 mt-3">
+                <a id="video-main-thumbnail" class="card h-100 border-0 shadow-sm video-card" href="/VideoDetail/@video.Id">
+                    <div class="position-relative overflow-hidden rounded-3">
+                        @* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV9wCx1jZUFmx7ROUvlzmb5nw34HElAqOClg&s" *@
+                        <img src="/files/DefaultThumbnail.png" class="card-img-top" alt=@video.Title>
 
-        <form method="GET">
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <i class="bi bi-play-circle-fill text-white opacity-75 display-4 play-icon"></i>
+                        </div>
 
+                        <span class="badge bg-dark position-absolute bottom-0 end-0 m-2 opacity-75">
+                            <i class="bi bi-clock"></i>
+                            @video.DurationSeconds
+                        </span>
 
-            @* Categories - START *@
-            <div class="row">
-                <div class="col-md-6">
-                    <select asp-for="RequestDto.CategoryId" class="form-select" aria-label="Kategoriler">
-                        <option selected>Kategori Seçin</option>
-                        @foreach (var category in Model.Categories)
-                        {
-                            <option value="@category.Id">@category.Name</option>
-                        }
-                    </select>
-                </div>
+                        @* <button class="badge bg-dark position-absolute top-50 start-50 translate-middle opacity-75">
+                                ▶️
+                            </button> *@
+                    </div>
+
+                    <div class="card-body px-0">
+                        <h5 class="card-title fw-bold text-dark mb-1">@video.Title</h5>
+                    </div>
+                </a>
             </div>
-            @* Categories - END *@
-
-
-            @* AgeGroups - START *@
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <select asp-for="RequestDto.AgeGroupId" class="form-select" aria-label="Yaş Grupları">
-                        <option selected>Yaş Grubu Seçin</option>
-                        @foreach (var ageGroup in Model.AgeGroups)
-                        {
-                            <option value="@ageGroup.Id">@ageGroup.Name (@ageGroup.MinAge - @ageGroup.MaxAge)</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            @* AgeGroups - END *@
-
-
-            @* SubscriptionTypes - START *@
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <select asp-for="RequestDto.SubscriptionTypeId" class="form-select" aria-label="Abonelik Tipleri">
-                        <option selected>Abonelik Tipi Seçin</option>
-                        @foreach (var subscriptionType in Model.SubscriptionTypes)
-                        {
-                            <option value="@subscriptionType.Id">@subscriptionType.Name</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            @* SubscriptionTypes - END *@
-
-            <div class="row mt-3">
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary w-100">Filtrele</button>
-                </div>
-                <div class="col-md-3">
-                    <a asp-page="/Videos" class="btn btn-outline-secondary w-100">Temizle</a>
-                </div>
-            </div>
-        </form>
+        }
     </div>
-    @* FILTERS - END *@
-
-
 </div>
+
+@* VIDEOS - END *@
+
+
+    

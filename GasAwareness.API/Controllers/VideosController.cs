@@ -21,6 +21,10 @@ namespace GasAwareness.API.Controllers
             _videoService = videoService;
         }
 
+        /// <summary>
+        /// Create a new video
+        /// </summary>
+        /// <param name="request">Video Create Request</param>
         [HttpPost]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> CreateVideoAsync(CreateVideoRequestDto request)
@@ -32,6 +36,12 @@ namespace GasAwareness.API.Controllers
             return Ok(createdId);
         }
 
+        /// <summary>
+        /// Get videos by filter (if filter options are null then get all videos)
+        /// </summary>
+        /// <param name="categoryId">Category Id</param>
+        /// <param name="ageGroupId">Age Group Id</param>
+        /// <param name="subscriptionTypeId">Subscription Type Id</param>
         [HttpGet]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> GetVideosAsync([FromQuery] Guid? categoryId, [FromQuery] Guid? ageGroupId, [FromQuery] Guid? subscriptionTypeId)
@@ -41,6 +51,25 @@ namespace GasAwareness.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get users watched videos
+        /// </summary>
+        /// <param name="categoryId">Category Id</param>
+        /// <param name="ageGroupId">Age Group Id</param>
+        /// <param name="subscriptionTypeId">Subscription Type Id</param>
+        [HttpGet("watched")]
+        [Authorize(Policy = "RequireAllRoles")]
+        public async Task<IActionResult> GetWatchedVideosAsync()
+        {
+            var response = await _videoService.GetWatchedVideosAsync(User.UserId());
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get video details by id
+        /// </summary>
+        /// <param name="id">Video Id</param>
         [HttpGet("detail")]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> GetVideoDetailAsync([FromQuery] Guid id)
@@ -52,6 +81,10 @@ namespace GasAwareness.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Delete video by id
+        /// </summary>
+        /// <param name="id">Video Id</param>
         [HttpDelete]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> DeleteVideoAsync([FromQuery] Guid id)
@@ -63,6 +96,11 @@ namespace GasAwareness.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Set video watched status
+        /// </summary>
+        /// <param name="id">Video Id</param>
+        /// <param name="isWatched">Is Watched Status (True or False)</param>
         [HttpPost("setWatchStatus")]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> SetVideoWatchedStatusAsync([FromQuery] Guid id, [FromQuery] bool isWatched)

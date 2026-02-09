@@ -20,6 +20,10 @@ namespace GasAwareness.API.Controllers
             _authService = authService;
         }
 
+        /// <summary>
+        /// Create a new user which role name is Visitor
+        /// </summary>
+        /// <param name="request">User Create Request</param>
         [HttpPost("register")]
         public async Task<IActionResult> RegisterVisitor(UserRegisterRequestDto request)
         {
@@ -30,6 +34,10 @@ namespace GasAwareness.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Create a new user which role name is Admin (Postman only) (For Test!)
+        /// </summary>
+        /// <param name="request">User Create Request</param>
         [HttpPost("registerAdmin")]
         public async Task<IActionResult> RegisterAdmin(UserRegisterRequestDto request)
         {
@@ -40,6 +48,10 @@ namespace GasAwareness.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Create a new user which role name is Editor (Postman only) (For Test!)
+        /// </summary>
+        /// <param name="request">User Create Request</param>
         [HttpPost("registerEditor")]
         public async Task<IActionResult> RegisterEditor(UserRegisterRequestDto request)
         {
@@ -50,6 +62,10 @@ namespace GasAwareness.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// User login
+        /// </summary>
+        /// <param name="request">User Login Request</param>
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginRequestDto request)
         {

@@ -19,6 +19,9 @@ namespace GasAwareness.API.Controllers
             _ageGroupService = ageGroupService;
         }
 
+        /// <summary>
+        /// Get all age groups
+        /// </summary>
         [HttpGet]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> GetAgeGroupsAsync()
@@ -26,6 +29,10 @@ namespace GasAwareness.API.Controllers
             return Ok(await _ageGroupService.GetAgeGroupsAsync());
         }
 
+        /// <summary>
+        /// Create a new age group
+        /// </summary>
+        /// <param name="request">Age Group Create Request</param>
         [HttpPost]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> CreateAgeGroupAsync(CreateAgeGroupRequestDto request)
@@ -37,6 +44,10 @@ namespace GasAwareness.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete age group by id
+        /// </summary>
+        /// <param name="id">Age Group Id</param>
         [HttpDelete]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> DeleteAgeGroupAsync([FromQuery] Guid id)

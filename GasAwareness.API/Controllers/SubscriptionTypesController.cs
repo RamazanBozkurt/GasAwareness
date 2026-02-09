@@ -19,6 +19,9 @@ namespace GasAwareness.API.Controllers
             _subscriptionTypeService = subscriptionTypeService;
         }
 
+        /// <summary>
+        /// Get all subscription types
+        /// </summary>
         [HttpGet]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> GetSubscriptionTypesAsync()
@@ -26,6 +29,9 @@ namespace GasAwareness.API.Controllers
             return Ok(await _subscriptionTypeService.GetSubscriptionTypesAsync());
         }
 
+        /// <summary>
+        /// Create a new subscription type
+        /// </summary>
         [HttpPost]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> CreateSubscriptionTypeAsync(CreateSubscriptionTypeRequestDto request)
@@ -37,6 +43,10 @@ namespace GasAwareness.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete subscription type by id
+        /// </summary>
+        /// <param name="id">Subscription Type Id</param>
         [HttpDelete]
         [Authorize(Policy = "RequireAdminAndEditor")]
         public async Task<IActionResult> DeleteSubscriptionTypeAsync([FromQuery] Guid id)

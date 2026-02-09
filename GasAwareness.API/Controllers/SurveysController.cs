@@ -19,6 +19,10 @@ namespace GasAwareness.API.Controllers
             _surveyService = surveyService;
         }
 
+        /// <summary>
+        /// Get survey detail by id
+        /// </summary>
+        /// <param name="id">Survey Id</param>
         [HttpGet]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> GetSurveyAsync([FromQuery] Guid id)
@@ -30,6 +34,9 @@ namespace GasAwareness.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get all surveys
+        /// </summary>
         [HttpGet("main")]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> GetSurveysAsync()
@@ -39,6 +46,22 @@ namespace GasAwareness.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get all surveys
+        /// </summary>
+        [HttpGet("main/all")]
+        [Authorize(Policy = "RequireAllRoles")]
+        public async Task<IActionResult> GetAllSurveysAsync()
+        {
+            var response = await _surveyService.GetAllSurveysMainListAsync();
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Create a new survey
+        /// </summary>
+        /// <param name="request">Survey Create Request</param>
         [HttpPost]
         [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> CreateSurveyAsync([FromBody] CreateSurveyRequestDto request)
@@ -61,6 +84,10 @@ namespace GasAwareness.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Submit and save survey
+        /// </summary>
+        /// <param name="request">Survey Submit Request</param>
         [HttpPost("submit")]
         [Authorize(Policy = "RequireAllRoles")]
         public async Task<IActionResult> SubmitSurvey([FromBody] SurveySubmitRequestDto request)
@@ -84,6 +111,9 @@ namespace GasAwareness.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Get all users submitted surveys
+        /// </summary>
         [HttpGet("userSurveys")]
         [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> GetUserSurveysAsync()
@@ -93,6 +123,10 @@ namespace GasAwareness.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get survey detail by submitted survey
+        /// </summary>
+        /// <param name="resultId">Survey Result Id</param>
         [HttpGet("userSurveys/detail")]
         [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> GetUserSurveyDetailAsync([FromQuery] Guid resultId)

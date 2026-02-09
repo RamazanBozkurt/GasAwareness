@@ -63,6 +63,9 @@
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/GasAwareness.UI.pdb
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/AutoMapper.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.AspNetCore.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.DependencyInjectionExtensions.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/MediaToolkit.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -78,9 +81,13 @@
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Microsoft.OpenApi.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Npgsql.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/GasAwareness.API.dll
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/GasAwareness.API.pdb
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/GasAwareness.API.xml
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.csproj.AssemblyReference.cache
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/rpswa.dswa.cache.json
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.GeneratedMSBuildEditorConfig.editorconfig
@@ -91,6 +98,7 @@
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.MvcApplicationPartsAssemblyInfo.cache
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.RazorAssemblyInfo.cache
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.RazorAssemblyInfo.cs
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.sourcelink.json
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/rjimswa.dswa.cache.json
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/rjsmrazor.dswa.cache.json
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json
@@ -162,6 +170,8 @@
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/233mliihxc-{0}-muycvpuwrr-muycvpuwrr.gz
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/jdf03vjeu5-{0}-87fc7y1x7t-87fc7y1x7t.gz
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/woreh67skh-{0}-jfsiqqwiad-jfsiqqwiad.gz
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/qxvwapuaag-{0}-mnvhyis6qs-mnvhyis6qs.gz
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/st2cuaexkw-{0}-mnvhyis6qs-mnvhyis6qs.gz
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/staticwebassets.build.json
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/staticwebassets.build.json.cache
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/staticwebassets.development.json
@@ -173,12 +183,3 @@
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.pdb
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.genruntimeconfig.cache
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/ref/GasAwareness.UI.dll
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Swashbuckle.AspNetCore.Swagger.dll
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.sourcelink.json
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/qxvwapuaag-{0}-mnvhyis6qs-mnvhyis6qs.gz
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/st2cuaexkw-{0}-mnvhyis6qs-mnvhyis6qs.gz
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.dll
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.AspNetCore.dll
-/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.DependencyInjectionExtensions.dll
