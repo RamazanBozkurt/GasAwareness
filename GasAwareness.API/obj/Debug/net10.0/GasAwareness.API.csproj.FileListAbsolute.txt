@@ -194,3 +194,4 @@
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.API/obj/Debug/net10.0/GasAwareness.API.pdb
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.API/obj/Debug/net10.0/GasAwareness.API.genruntimeconfig.cache
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.API/obj/Debug/net10.0/ref/GasAwareness.API.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.API/obj/Debug/net10.0/GasAwareness.API.sourcelink.json

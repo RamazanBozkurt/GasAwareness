@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GasAwareness.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+afbb67b07f63bca49c084a4cf3b67b4a3fa18fc6")]
 [assembly: System.Reflection.AssemblyProductAttribute("GasAwareness.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GasAwareness.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
