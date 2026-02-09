@@ -179,3 +179,6 @@
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/GasAwareness.UI.sourcelink.json
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/qxvwapuaag-{0}-mnvhyis6qs-mnvhyis6qs.gz
 /Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/obj/Debug/net10.0/compressed/st2cuaexkw-{0}-mnvhyis6qs-mnvhyis6qs.gz
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.AspNetCore.dll
+/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/bin/Debug/net10.0/FluentValidation.DependencyInjectionExtensions.dll

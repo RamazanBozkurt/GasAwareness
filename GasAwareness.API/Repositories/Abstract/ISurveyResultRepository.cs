@@ -8,5 +8,6 @@ namespace GasAwareness.API.Repositories.Abstract
 {
     public interface ISurveyResultRepository : IGenericRepository<SurveyResult>
     {
+        Task<List<SurveyResult>> GetAllUserSurveysAsync();
     }
 }

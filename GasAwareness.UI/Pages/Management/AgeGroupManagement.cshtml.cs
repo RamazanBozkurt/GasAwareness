@@ -38,6 +38,8 @@ namespace GasAwareness.UI.Pages.Management
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid) return Page();
+
             await CreateAgeGroupAsync(Request);
 
             return RedirectToPage();

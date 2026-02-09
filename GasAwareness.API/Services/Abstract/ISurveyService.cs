@@ -16,5 +16,7 @@ namespace GasAwareness.API.Services.Abstract
         Task<bool> IsSurveySolvedByUser(string userId, Guid surveyId);
         Task<List<SurveyMainResponseDto>> GetSurveyMainListAsync();
         Task<bool> UpdateAsync(Guid videoId, Guid surveyId);
+        Task<List<UserSurveyListDto>> GetAllUserSurveysAsync();
+        Task<UserSurveyDetailDto?> GetUserSurveyDetailAsync(Guid resultId);
     }
 }

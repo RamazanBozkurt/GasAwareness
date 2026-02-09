@@ -55,6 +55,16 @@ namespace GasAwareness.API.Helpers
             CreateMap<Survey, SurveyMainResponseDto>()
                 .ForMember(dest => dest.QuestionCount, opt => opt.MapFrom(src => src.Questions.Count()))
                 .ReverseMap();
+
+            CreateMap<SurveyResult, UserSurveyListDto>()
+                .ForMember(dest => dest.ResultId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dest => dest.SurveyTitle, opt => opt.MapFrom(src => src.Survey.Title))
+                .ForMember(dest => dest.CorrectCount, opt => opt.MapFrom(src => src.CorrectCount))
+                .ForMember(dest => dest.WrongCount, opt => opt.MapFrom(src => src.WrongCount))
+                .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score))
+                .ForMember(dest => dest.CompletedAt, opt => opt.MapFrom(src => src.CompletedAt))
+                .ReverseMap();
         }
     }
 }

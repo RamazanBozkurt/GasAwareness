@@ -62,7 +62,7 @@
                                 <th scope="row">@(i+1)</th>
                                 <td>@Model.Surveys[i].Title</td>
                                 <td>@Model.Surveys[i].QuestionCount</td>
-                                <td>@Model.Surveys[i].CreatedAt.ToString("HH:mm - dd/MM/yyyy")</td>
+                                <td>@Model.Surveys[i].CreatedAt.ToLocalTime().ToString("HH:mm - dd/MM/yyyy")</td>
                                 <td>
                                     <a asp-page="/Management/SurveyDetail" asp-route-id="@Model.Surveys[i].Id" style="width: 120px;" class="btn btn-primary btn-sm">
                                         Detay

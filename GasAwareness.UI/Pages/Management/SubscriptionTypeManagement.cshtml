@@ -9,6 +9,7 @@
     <form method="post">
         <div class="col-md-2">
             <input asp-for="Request.Name" type="text" class="form-control" placeholder="Abonelik Tipi" aria-label="Name">
+            <span asp-validation-for="Request.Name" class="text-danger"></span>
         </div>
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
@@ -33,7 +34,7 @@
                             <tr>
                                 <th scope="row">@(i+1)</th>
                                 <td>@Model.SubscriptionTypes[i].Name</td>
-                                <td>@Model.SubscriptionTypes[i].CreatedAt.ToString("HH:mm - dd/MM/yyyy")</td>
+                                <td>@Model.SubscriptionTypes[i].CreatedAt.ToLocalTime().ToString("HH:mm - dd/MM/yyyy")</td>
                                 <td>
                                     <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Bu abonelik tipini silmek istediğinize emin misiniz?');">
                                         <input type="hidden" name="id" value="@Model.SubscriptionTypes[i].Id" />

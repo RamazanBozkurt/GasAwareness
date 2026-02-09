@@ -62,6 +62,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlbWVudC9TdXJ2ZXlNYW5hZ2VtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/Pages/Management/UserSurveyDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlbWVudC9Vc2VyU3VydmV5RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/Pages/Management/UserSurveys.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlbWVudC9Vc2VyU3VydmV5cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.UI/Pages/Management/VideoManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlbWVudC9WaWRlb01hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

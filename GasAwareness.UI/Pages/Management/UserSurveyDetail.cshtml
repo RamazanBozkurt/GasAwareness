@@ -1,0 +1,35 @@
+@page "{id:guid}"
+@model GasAwareness.UI.Pages.Management.UserSurveyDetail
+@{
+    Layout = "_ManagementLayout";
+    ViewData["Title"] = "UserSurveyDetail";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>Anket Detayı: @Model?.Detail?.SurveyTitle</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Kullanıcı:</strong> @Model?.Detail?.UserEmail</p>
+            <p><strong>Toplam Puan:</strong> @Model?.Detail?.Score.ToString("F0")</p>
+            <hr />
+            <h5>Soru ve Cevaplar</h5>
+            <div class="list-group">
+                @foreach (var answer in Model?.Detail?.Answers)
+                {
+                    <div class="list-group-item @(answer.IsCorrect ? "list-group-item-success" : "list-group-item-danger")">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">@answer.QuestionText</h6>
+                            <span>@(answer.IsCorrect ? "✔️ Doğru" : "❌ Yanlış")</span>
+                        </div>
+                        <p class="mb-1">Kullanıcının Cevabı: <strong>@answer.SelectedOptionText</strong></p>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-page="/Management/UserSurveys" class="btn btn-secondary">Listeye Dön</a>
+        </div>
+    </div>
+</div>

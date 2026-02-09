@@ -83,5 +83,25 @@ namespace GasAwareness.API.Controllers
                 return StatusCode(500, "Failed to save survey: " + ex.Message);
             }
         }
+
+        [HttpGet("userSurveys")]
+        [Authorize(Policy = "RequireAdmin")]
+        public async Task<IActionResult> GetUserSurveysAsync()
+        {
+            var response = await _surveyService.GetAllUserSurveysAsync();
+
+            return Ok(response);
+        }
+
+        [HttpGet("userSurveys/detail")]
+        [Authorize(Policy = "RequireAdmin")]
+        public async Task<IActionResult> GetUserSurveyDetailAsync([FromQuery] Guid resultId)
+        {
+            var response = await _surveyService.GetUserSurveyDetailAsync(resultId);
+
+            if (response == null) return NotFound();
+
+            return Ok(response);
+        }
     }
 }

@@ -1,0 +1,39 @@
+@page
+@model GasAwareness.UI.Pages.Management.UserSurveys
+@{
+    Layout = "_ManagementLayout";
+    ViewData["Title"] = "UserSurveys";
+}
+
+<div class="container mt-5">
+    <h3>Tamamlanan Anketler</h3>
+    <table class="table table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Kullanıcı</th>
+                <th>Anket</th>
+                <th>Doğru</th>
+                <th>Yanlış</th>
+                <th>Puan</th>
+                <th>Tarih</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UserSurveyList)
+            {
+                <tr>
+                    <td>@item.UserEmail</td>
+                    <td>@item.SurveyTitle</td>
+                    <td><span class="badge bg-success">@item.CorrectCount</span></td>
+                    <td><span class="badge bg-danger">@item.WrongCount</span></td>
+                    <td><strong>@item.Score.ToString("F0")</strong></td>
+                    <td>@item.CompletedAt.ToLocalTime().ToString("HH:mm - dd/MM/yyyy")</td>
+                    <td>
+                        <a asp-page="/Management/UserSurveyDetail" asp-route-id="@item.ResultId" class="btn btn-sm btn-info text-white">Detay</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

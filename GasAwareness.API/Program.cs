@@ -1,5 +1,7 @@
 using System.Security.Claims;
 using System.Text;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using GasAwareness.API.Entities;
 using GasAwareness.API.Enums;
 using GasAwareness.API.Helpers;
@@ -44,6 +46,12 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAgeGroupService, AgeGroupService>();
 builder.Services.AddScoped<ISubscriptionTypeService, SubscriptionTypeService>();
 builder.Services.AddScoped<ISurveyService, SurveyService>();
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<VideoCreateValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CategoryCreateValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<AgeGroupCreateValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<SubscriptionTypeCreateValidator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -157,6 +165,8 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<DataContext>();
         var env = services.GetRequiredService<IHostEnvironment>();
+
+        await context.Database.MigrateAsync(); 
 
         var seeder = new Seed(context, env);
         await seeder.SeedData();

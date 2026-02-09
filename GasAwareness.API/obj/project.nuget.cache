@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "9pJ/14O8/UI=",
+  "dgSpecHash": "KgyuSfxaILY=",
   "success": true,
   "projectFilePath": "/Users/ramazanbozkurt/Desktop/Projects/gas-awareness/GasAwareness.API/GasAwareness.API.csproj",
   "expectedPackageFiles": [
     "/Users/ramazanbozkurt/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/ramazanbozkurt/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/fluentvalidation.aspnetcore/11.3.1/fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "/Users/ramazanbozkurt/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "/Users/ramazanbozkurt/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/ramazanbozkurt/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/10.0.0/microsoft.aspnetcore.authentication.jwtbearer.10.0.0.nupkg.sha512",
     "/Users/ramazanbozkurt/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/10.0.0/microsoft.aspnetcore.identity.entityframeworkcore.10.0.0.nupkg.sha512",

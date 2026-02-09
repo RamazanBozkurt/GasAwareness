@@ -1,4 +1,7 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using GasAwareness.API.Enums;
+using GasAwareness.API.Helpers;
 using GasAwareness.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -29,7 +32,16 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("RequireAllRoles", policy => policy.RequireRole(RoleGroup.AllRoles));
 });
 
+builder.Services.AddValidatorsFromAssemblyContaining<VideoCreateValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.SuppressModelStateInvalidFilter = true; 
+    });
 
 
 var app = builder.Build();

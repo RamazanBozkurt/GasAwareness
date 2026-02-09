@@ -8,6 +8,7 @@ using GasAwareness.API.Models.Survey.Requests;
 using GasAwareness.API.Models.Survey.Responses;
 using GasAwareness.API.Repositories.Abstract;
 using GasAwareness.API.Services.Abstract;
+using Microsoft.EntityFrameworkCore;
 
 namespace GasAwareness.API.Services.Concrete
 {
@@ -18,13 +19,15 @@ namespace GasAwareness.API.Services.Concrete
         private readonly ISurveyOptionRepository _surveyOptionRepository;
         private readonly ISurveyAnswerRepository _surveyAnswerRepository;
         private readonly ISurveyResultRepository _surveyResultRepository;
-        public SurveyService(ISurveyRepository repository, IMapper mapper, ISurveyOptionRepository surveyOptionRepository, ISurveyAnswerRepository surveyAnswerRepository, ISurveyResultRepository surveyResultRepository)
+        private readonly DataContext _context;
+        public SurveyService(ISurveyRepository repository, IMapper mapper, ISurveyOptionRepository surveyOptionRepository, ISurveyAnswerRepository surveyAnswerRepository, ISurveyResultRepository surveyResultRepository, DataContext context)
         {
             _repository = repository;
             _mapper = mapper;
             _surveyOptionRepository = surveyOptionRepository;
             _surveyAnswerRepository = surveyAnswerRepository;
             _surveyResultRepository = surveyResultRepository;
+            _context = context;
         }
 
         public async Task<Guid> CreateSurveyAsync(CreateSurveyRequestDto request)
@@ -152,6 +155,46 @@ namespace GasAwareness.API.Services.Concrete
             if (response == null) return false;
 
             return true;
+        }
+
+        public async Task<List<UserSurveyListDto>> GetAllUserSurveysAsync()
+        {
+            var userSurveys = await _surveyResultRepository.GetAllUserSurveysAsync();
+
+            var response = _mapper.Map<List<UserSurveyListDto>>(userSurveys);
+
+            return response;
+        }
+
+        public async Task<UserSurveyDetailDto?> GetUserSurveyDetailAsync(Guid resultId)
+        {
+            var result = await _context.SurveyResults
+                .Include(r => r.User)
+                .Include(r => r.Survey)
+                .FirstOrDefaultAsync(r => r.Id == resultId);
+
+            if (result == null) return null;
+
+            var answers = await _context.SurveyAnswers
+                .Where(a => a.UserId == result.UserId && a.Question.SurveyId == result.SurveyId)
+                .Include(a => a.Question)
+                .Include(a => a.Option)
+                .OrderBy(x => x.Question.Order)
+                .ThenBy(x => x.Option.Order)
+                .Select(a => new AnswerDetailDto
+                {
+                    QuestionText = a.Question.QuestionText,
+                    SelectedOptionText = a.Option.OptionText,
+                    IsCorrect = a.Option.IsCorrect,
+                }).ToListAsync();
+
+            return new UserSurveyDetailDto
+            {
+                UserEmail = result.User.Email,
+                SurveyTitle = result.Survey.Title,
+                Score = result.Score,
+                Answers = answers
+            };
         }
     }
 }

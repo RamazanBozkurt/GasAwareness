@@ -35,7 +35,7 @@ namespace GasAwareness.UI.Pages.Management
         public List<AgeGroupResponseDto> AgeGroups { get; set; } = new();
         public List<SubscriptionTypeResponseDto> SubscriptionTypes { get; set; } = new();
         public List<VideoResponseDto> VideoModels { get; set; } = new();
-        public List<SurveyMainResponseDto> Surveys { get; set; }
+        public List<SurveyMainResponseDto> Surveys { get; set; } = new();
 
         private readonly IConfiguration _configuration;
         private HttpClient _client => CreateClient();
@@ -61,13 +61,18 @@ namespace GasAwareness.UI.Pages.Management
 
         public async Task<IActionResult> OnPostAsync()
         {
+            // if (!ModelState.IsValid)
+            // {
+            //     //await LoadViewDataAsync(); 
+            //     return Page();
+            // }
+
             var fileUploadResponseDto = await UploadFileAsync();
 
             RequestDto.Id = fileUploadResponseDto!.Id;
             RequestDto.Path = fileUploadResponseDto.Path;
 
             var apiResponse = await SaveVideoAsync(RequestDto);
-
 
             return RedirectToPage();
         }

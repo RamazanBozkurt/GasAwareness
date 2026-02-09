@@ -9,6 +9,7 @@
     <form method="post">
         <div class="col-md-2">
             <input asp-for="Request.Name" type="text" class="form-control" placeholder="Kategori Adı" aria-label="Name">
+            <span asp-validation-for="Request.Name" class="text-danger"></span>
         </div>
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
@@ -35,7 +36,7 @@
                             <tr>
                                 <th scope="row">@(i+1)</th>
                                 <td>@Model.Categories[i].Name</td>
-                                <td>@Model.Categories[i].CreatedAt.ToString("HH:mm - dd/MM/yyyy")</td>
+                                <td>@Model.Categories[i].CreatedAt.ToLocalTime().ToString("HH:mm - dd/MM/yyyy")</td>
                                 <td>
                                     <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">
                                         <input type="hidden" name="id" value="@Model.Categories[i].Id" />
