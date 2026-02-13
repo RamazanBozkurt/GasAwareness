@@ -37,6 +37,9 @@ namespace GasAwareness.UI.Pages
 
             var client = _clientFactory.CreateClient();
             var loginUrl = _configuration["APIBaseUrl"] + "auth/login";
+
+            Console.WriteLine("REQUEST SENDED TO: " + loginUrl);
+
             var content = new StringContent(
                 JsonSerializer.Serialize(LoginDto), Encoding.UTF8, "application/json");
 

@@ -9,3 +9,35 @@ services:
       POSTGRES_DB: gasAwareness2
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  api: 
+    image: gas-awareness-api
+    container_name: gas-awareness-api
+    build:
+      context: .
+      dockerfile: GasAwareness.API/Dockerfile
+    ports:
+      - "5052:8080"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__PostgreSqlConnectionString=Host=db;Port=5432;Database=gasAwareness2;Username=sa;Password=Password1!
+    restart: on-failure
+
+  ui:
+    image: gas-awareness-ui
+    container_name: gas-awareness-ui
+    build:
+      context: .
+      dockerfile: GasAwareness.UI/Dockerfile
+    ports:
+      - "5072:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - APIBaseUrl=http://api:8080/api/
+  
+volumes:
+  postgres_data:
