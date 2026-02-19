@@ -26,3 +26,4 @@ publish/
 *.ldf
 
 wwwroot/files/contents/
+wwwroot/files/contents/**/*
