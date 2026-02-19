@@ -49,7 +49,7 @@ namespace GasAwareness.UI.Pages
 
         private async Task<List<VideoResponseDto>> GetVideosAsync(GetVideoRequestDto request)
         {
-            var url = $"{_configuration["APIBaseUrl"]}videos?categoryId={request.CategoryId}&ageGroupId={request.AgeGroupId}&subscriptionTypeId={request.AgeGroupId}";
+            var url = $"{_configuration["APIBaseUrl"]}videos?categoryId={request.CategoryId}&ageGroupId={request.AgeGroupId}&subscriptionTypeId={request.SubscriptionTypeId}";
             var response = await _client.GetAsync(url);
 
             CheckResponse(response);

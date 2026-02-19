@@ -55,7 +55,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<AgeGroupCreateValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<SubscriptionTypeCreateValidator>();
 
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "GasAwareness API", Version = "v1" });
@@ -66,11 +65,23 @@ builder.Services.AddSwaggerGen(c =>
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-        Name = "Authorization",
+        // Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        // Name = "Authorization",
+        // In = ParameterLocation.Header,
+        // Type = SecuritySchemeType.ApiKey,
+        // Scheme = "Bearer"
+
         In = ParameterLocation.Header,
+        Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+
+    c.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+    {
+        [new OpenApiSecuritySchemeReference("bearer", document)] = []
     });
 });
 

@@ -54,6 +54,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStaticFiles(); 
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "files")),
+    RequestPath = "/files"
+});
+
 app.UseHttpsRedirection();
 
 app.UseRouting();

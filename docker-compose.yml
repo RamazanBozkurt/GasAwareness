@@ -1,12 +1,12 @@
 services:
   db:
     image: postgres
-    container_name: pg_gasAwareness2
+    container_name: gas-awareness-db
     restart: always
     environment:
       POSTGRES_USER: sa
       POSTGRES_PASSWORD: Password1!
-      POSTGRES_DB: gasAwareness2
+      POSTGRES_DB: gasAwareness
     ports:
       - "5432:5432"
     volumes:
@@ -23,8 +23,10 @@ services:
     depends_on:
       - db
     environment:
-      - ConnectionStrings__PostgreSqlConnectionString=Host=db;Port=5432;Database=gasAwareness2;Username=sa;Password=Password1!
+      - ConnectionStrings__PostgreSqlConnectionString=Host=db;Port=5432;Database=gasAwareness;Username=sa;Password=Password1!
     restart: on-failure
+    volumes:
+      - ./uploads:/app/wwwroot/files
 
   ui:
     image: gas-awareness-ui
@@ -38,6 +40,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
       - APIBaseUrl=http://api:8080/api/
+    volumes:
+      - ./GasAwareness.UI/wwwroot/files:/app/wwwroot/files
   
 volumes:
   postgres_data:
