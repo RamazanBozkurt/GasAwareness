@@ -24,3 +24,5 @@ publish/
 
 *.mdf
 *.ldf
+
+wwwroot/files/contents/
