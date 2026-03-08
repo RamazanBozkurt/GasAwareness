@@ -40,5 +40,5 @@ docker-compose up -d --build
 
 Once the containers are running, you can access the services at:
 * **UI (Web Interface):* [http://localhost:5072](http://localhost:5072)
-* **API Gateway:* [http://localhosz:5052](http://localhost:5052)
+* **API Gateway:* [http://localhost:5052](http://localhost:5052)
 * **Database:* `localhost:5432`
